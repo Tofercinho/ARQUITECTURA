@@ -1,0 +1,243 @@
+/*Footer*/
+.my-footer-padding {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/*NavBar*/
+.my-brand-logo-size {
+  width: 200px;
+  height: 100px;
+}
+.my-navbar-bg-color {
+  background-color: rgb(53, 53, 53);
+  width: 100%;
+}
+
+.my-navbar-drop-bg-color {
+  background-color: rgba(184, 161, 118, 0.829);
+}
+
+.my-sd-nav-bg-color {
+  background-color: rgb(65, 65, 65);
+  width: 100%;
+}
+/*Pantalla*/
+.my-screen-size {
+  width: 100%;
+  position: relative;
+}
+/*Img*/
+.my-img-fit-contain {
+  object-fit: contain;
+}
+.my-img-fit-cover {
+  object-fit: cover;
+}
+.my-search-icon-size {
+  height: 25px;
+  width: 25px;
+}
+
+/*Text*/
+.my-nav-text-padding {
+  padding-left: 15px;
+}
+.my-text-font-24 {
+  font-size: 24px;
+}
+.my-text-font-12 {
+  font-size: 12px;
+}
+.my-text-font-18 {
+  font-size: 18px;
+}
+.my-text-font-50 {
+  font-size: 50px;
+}
+.my-footer-social-icon-size {
+  height: 30px;
+  width: 30px;
+}
+.my-text-justify {
+  text-align: justify;
+}
+.my-text-center {
+  text-align: center;
+}
+.my-text-left {
+  text-align: left;
+}
+.my-text-right {
+  text-align: right;
+}
+
+/*Padding*/
+.my-pb-60 {
+  padding-bottom: 60px;
+}
+.my-pt-60 {
+  padding-top: 60px;
+}
+.my-pb-30 {
+  padding-bottom: 30px;
+}
+.my-pt-30 {
+  padding-top: 30px;
+}
+.my-pb-10 {
+  padding-bottom: 10px;
+}
+.my-pt-10 {
+  padding-top: 10px;
+}
+.my-pb-15 {
+  padding-bottom: 15px;
+}
+.my-pt-15 {
+  padding-top: 15px;
+}
+.my-pt-200 {
+  padding-top: 200px;
+}
+.my-pb-200 {
+  padding-bottom: 200px;
+}
+.my-pt-120 {
+  padding-top: 120px;
+}
+.my-pb-120 {
+  padding-bottom: 120px;
+}
+.my-espaciador {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/*Margin*/
+.my-mg-4 {
+  margin: 4px;
+}
+
+/*Contact page banner*/
+.my-contact-banner-bg-image {
+  background-image: url("../img/Portada.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*Contact page form background*/
+.my-fondo-formulario-contacto {
+  background-image: url("../img/fondo formulario.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.my-white-tp-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.my-bk-hr {
+  background-color: black;
+}
+.my-wt-hr {
+  background-color: white;
+}
+/*Boton*/
+.my-btn-bg-red {
+  background-color: red;
+}
+.my-campo-correcto {
+  color: #1ed12d;
+}
+
+.my-campo-incorrecto {
+  color: #bb2929;
+}
+
+/*GOOGLE MAPS*/
+
+#map {
+  height: 200px;
+  width: 100%;
+}
+#gmap {
+  color: rgb(204, 240, 187);
+}
+
+.error_nombre_r {
+  display: none;
+}
+.error_nombre_r-activo {
+  display: block;
+  color: #bb2929;
+}
+
+.error_nombre_c {
+  display: none;
+}
+.error_nombre_c-activo {
+  display: block;
+  color: #bb2929;
+}
+
+.error_apellido_r {
+  display: none;
+}
+
+.error_apellido_r-activo {
+  display: block;
+  color: #bb2929;
+}
+
+.error_email_r {
+  display: none;
+}
+
+.error_email_r-activo {
+  display: block;
+  color: #bb2929;
+}
+
+.error_email_l {
+  display: none;
+}
+
+.error_email_l-activo {
+  display: block;
+  color: #bb2929;
+}
+
+.error_email_c {
+  display: none;
+}
+
+.error_email_c-activo {
+  display: block;
+  color: #bb2929;
+}
+
+/*CLIMA API*/
+.card {
+  width: 80%;
+  background: #05f0dc;
+  height: 50px auto;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.close {
+  float: right;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.card h1 {
+  padding: 1px 0;
+  text-align: center;
+}
+
+.card p {
+  text-align: center;
+  margin: 5px 0;
+  font-size: 20px;
+}

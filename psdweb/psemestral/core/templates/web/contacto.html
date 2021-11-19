@@ -1,0 +1,99 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %} 
+{% load widget_tweaks %}
+{% block contenido %}
+
+    <!--Banner-->
+    <div class="container-fluid text-center my-contact-banner-bg-image my-pb-200 my-pt-200" >
+        <h1><b>CONTACTO</b></h1>
+    </div>
+
+    <!--espaciador-->
+    <div class="container my-pt-60 my-pb-60"></div>
+    <!--espaciador-->
+
+    <!--Form-->
+    <form action="" name="formulario_contacto" id="formulario_contacto" method="POST">
+      {% csrf_token %}
+      <div class="container-fluid text-center my-pb-120 my-pt-120 my-fondo-formulario-contacto">
+        <div class="container">
+          <div class="row my-white-tp-bg">
+            <div class="col-md" style="border-style: solid; border-width: 3px;">
+              <h5 class="my-pt-15 my-pb-60">Información</h5>
+              <hr class="my-bk-hr">
+              <p><b>Dirección:</b> 11 Norte 1291, Villa Exótica, Edificio Institucional</p>
+              <hr class="my-bk-hr">
+              <p><b>Número de contacto:</b> (56) 55 232 2100 </p>
+              <hr class="my-bk-hr">
+              <p><b>Correo:</b> CODELCO@GMAIL.COM</p>
+              </ul>
+            </div>
+            <div class="col-md" style="border-style: solid; border-width: 3px;">
+              <h5 class="my-pt-15">Visita medica</h5>
+              <!--Div formulario-->
+              <div>
+                
+                <div class="form-group my-text-left">
+                  <label for="nombre">Nombre</label>
+                  <!--<input type="text" name="nombre_contacto" id="nombre_contacto" placeholder="Ej: Marcos Parra" class="form-control">-->
+                  {{ cform.name|add_class:"form-control"}} 
+                  <p class="error_nombre_c" id="error_nombre_c">Este campo no puede contener numeros ni simbolos, el texto no puede superar los 16 caracteres ni tener menos de 4</p>
+                </div>
+                
+                <div class="form-group my-text-left">
+                  <label for="email">Email</label>
+                  {{ cform.email|add_class:"form-control" }}
+                  <p class="error_email_c" id="error_email_c">este campo debe tener una estructura de correo valido: ejemplo@correo.com</p>
+                </div>
+                
+                <div class="form-group my-text-left">
+                  <label for="mensaje_contacto">Mensaje</label>
+                  {{ cform.msn|add_class:"form-control" }}
+                </div>
+                 
+                 <div class="form-group my-text-left">
+                  <label for="observacion_contacto">Observacion</label>
+                  {{ cform.obser|add_class:"form-control" }}
+                </div>
+                
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary btn block w-100" value="Enviar">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+  <br>
+  <div
+    {% if messages %}
+      {% for m in messages %}
+
+        <script>
+          Swal.fire(
+            "title" : "Buen Trabajo!",
+            "text": "{{m}}",
+            "icon": "success"
+          )
+        </script>
+
+      {% endfor %}
+    {% endif %}
+  </div>
+  <br>
+    <!--espaciador-->
+    <div class="container my-pt-60 my-pb-60"></div>
+    <!--espaciador-->
+
+    <div class="container text-center">
+      <b id="gmap" class="my-text-font-50">  Google Maps </b>
+            <div id="map"></div>
+              <script src="../../Proyecto-Semestral-Desarrollo-Web/js/maps.js"></script>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+            <div class="my-espaciador"></div>
+    </div>
+
+{% endblock contenido %}

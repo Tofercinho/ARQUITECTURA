@@ -1,0 +1,58 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/menus.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    {% endblock css %}
+     
+     
+   
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<section class="our-webcoderskull padding-lg">
+  <div class="container">
+    <div class="row heading heading-icon">
+        <h2>Menu</h2>
+    </div>
+    <ul class="row">
+      <li class="col-12 col-md 6 col-lg-3">
+          <div class="cnt-block equal-hight" style="height: 350px;">
+            <figure><img src="{% static 'app/img/Iconos/avatar.png' %}" class="img-responsive" alt=""></figure>
+            <h3><a href="{% url 'userscrud' %}"> Menu Usuario </a></h3>
+            <p>Crud de Usuarios</p>
+            <ul class="follow-us clearfix">
+            </ul>
+          </div>
+      </li>
+      <li class="col-12 col-md-6 col-lg-3">
+          <div class="cnt-block equal-hight" style="height: 349px;">
+            <figure><img src="{% static 'app/img/Iconos/contacto.png' %}" class="img-responsive" alt=""></figure>
+            <h3><a href="{% url 'contactcrud' %}">Menu Contacto </a></h3>
+            <p>Crud de formulario de Contacto</p>
+            <ul class="follow-us clearfix">
+            
+            </ul>
+          </div>
+      </li>
+      <li class="col-12 col-md-6 col-lg-3">
+          <div class="cnt-block equal-hight" style="height: 349px;">
+            <figure><img src="{% static 'app/img/Iconos/Producto.png' %}" class="img-responsive" alt=""></figure>
+            <h3><a href="{% url 'productcrud' %}" >Menu Producto </a></h3>
+            <p>Productos</p>
+            <ul class="follow-us clearfix">
+            </ul>
+          </div>
+       </li>
+      
+            </ul>
+          </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{% endblock contenido %}

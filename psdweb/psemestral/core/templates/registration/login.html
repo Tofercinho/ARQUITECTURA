@@ -1,0 +1,42 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/shop.css' %}">
+
+    {% endblock css %}
+    <section class="our-webcoderskull padding-lg">
+<div class="container">
+    
+        <div class="col-sm-7 col-md-10 col-md-offset-5">
+            <hr>
+            <h1 class="text-center login-title">LOGIN | ReplyModa</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="{% static 'app/img/Logo.png' %}"
+                    alt="">
+                <form class="form-signin" method="POST">
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <!--<input type="text" class="form-control" id="email" name="email" placeholder="email" required autofocus>-->
+                    <!--<input type="password" class="form-control" id="password" name="password" placeholder="password" required>-->
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Sign in</button>
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" value="remember-me">
+                        Remember me
+                    </label>
+                    <a href="{% url 'contacto' %}" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+            </div>
+            <hr>
+            <a href="{% url 'register' %}" class="text-center new-account">Create an account </a>
+            <hr>
+        </div>
+    
+</div>
+
+{% endblock contenido %}

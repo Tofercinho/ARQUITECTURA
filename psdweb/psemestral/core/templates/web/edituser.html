@@ -1,0 +1,61 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %} 
+{% load widget_tweaks %}
+{% block contenido %}
+    <br>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Registro de Usuarios <small>by ReplyModa</small></h3>
+                    </div>
+                    <div class="panel-body">
+                    
+                    <form role="form" method="POST">
+                        {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="NOMBRE">NOMBRE</label>
+                                         {{form.name |add_class:"form-control"}} 
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <label for="SEGUNDO NOMBRE">NOMBRE DE USUARIO</label>
+                                         {{form.username |add_class:"form-control"}}  
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="E-MAIL">E-MAIL</label>
+                                 {{form.email |add_class:"form-control"}}
+                                 <label for="contraseña">contraseña</label>
+                                <div class="CENTER">
+                                    <div class="form-group">
+                                          {{form.password |add_class:"form-control"}}
+                                    </div>
+                                </div>
+                            </div>
+               
+                        <input type="submit" value="Register" class="btn btn-info btn-block">
+                    
+                    </form>
+                </div>
+            </div>
+    </div>
+    <br>
+
+    <div
+        {% if messages %}
+        {% for m in messages %}
+
+            <div> {{m}} </div>
+
+        {% endfor %}
+        {% endif %}
+    </div>
+    <br>
+{% endblock contenido %}form

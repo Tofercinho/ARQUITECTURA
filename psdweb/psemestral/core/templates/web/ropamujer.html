@@ -1,0 +1,41 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+
+
+     {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/shop.css' %}">
+    {% endblock css %}
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {%load humanize%}
+    <section class="our-webcoderskull padding-lg">
+    <div class="container">
+        <div class="row heading heading-icon">
+            <h2>Tienda</h2>
+        </div>
+        <ul class="row">
+        {% for p in entity %}
+          {%if p.gender == 1%}
+          <li class="col-12 col-md-6 col-lg-3">
+            
+            <div class="cnt-block equal-hight" style="height: 400px;">
+                <p>{{p.type}}</p>
+                <figure><img src="{{p.img.url}}" alt=""></figure>
+                <h3>{{p.name}} - {{p.brand}}</h3>
+                <h2>${{p.price | intcomma}}</h2>
+                <p>{{p.gender}}</p>
+                <p>talla: {{p.size}}</p>
+            </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        {% include 'web/pagination.html'  %}
+    </div>
+    </section>
+  {% endblock contenido %}

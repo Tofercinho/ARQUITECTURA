@@ -1,0 +1,63 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+  <!-- TABLAS PARA EL CRUD -->
+  
+  <div class="container">
+    <br>
+    {%  include 'web/status.html' %}
+    <br>
+    <br>
+    <table class="table table-striped custab">
+      <thead>
+        <a href="{% url 'addproducto' %}" class="btn btn-warning btn-xs pull-right">Add Product<b>+</b></a>
+        <a href="{% url 'stockproduct' %}" class="btn btn-success btn-xs pull-right">See Shop<b></b> </a>
+        <a href="{% url 'userscrud' %}" class="btn btn-success btn-xs pull-right">See Users Acount<b></b> </a>
+        <a href="{% url 'contactcrud' %}" class="btn btn-success btn-xs pull-right">See Contacts msn<b></b> </a>
+        <br>
+        <tr>
+          <br>
+          <th>ID</th>
+          <th>gender</th>
+          <th>modelo</th>
+          <th>size</th>
+          <th>type</th>
+          <th>brand</th>
+          <th>price</th>
+          <th>img</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      {% for p in entity %}
+        <tr>
+          <td>{{ p.id | title}}</td>
+          <td>{{ p.gender | title}}</td>
+          <td>{{ p.name | title}}</td>
+          <td>{{ p.size | title}}</td>
+          <td>{{ p.type | title}}</td>
+          <td>{{ p.brand | title}}</td>
+          <td>{{ p.price | title}}</td>
+          <td>{{ p.img | title}}</td>
+          <td class="text-center">
+          <a href="{% url 'editproduct' p.id%}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+          <a href="{% url 'deleteproduct' p.id%}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a> </td>
+        </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <div
+      {% if messages %}
+        {% for m in messages %}
+
+          <div> {{m}} </div>
+
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <br>
+  <div>
+    {% include 'web/pagination.html'  %}
+  </div>
+  <br>
+{% endblock contenido %}

@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'app/img/LOGUITO.png' %}">
+
+
+    <!--Link Bootstrap-->
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    {% endblock css %}
+    
+    <!--Link Bootstrap-->
+    <title>S A F E - Inicio</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top p-md-3 my-sd-nav-bg-color">
+      <div class="container">
+        <div class="flex-grow-1 text-right">
+          {% if user.is_authenticated %}
+            <h5  class="text-white">Mi Cuenta: @{{ user.username }}<a href="{% url 'logout' %}" class="text-white 1">   Salir /</a>
+            <a href="{% url 'menus' %}" class="text-white 1">menu admin</a></h5>
+          {% else %}
+            <h5  class="text-white">Mi Cuenta: <a href="{% url 'login' %}" class="text-white 1">Entrar /</a>
+            <a href="{% url 'register' %}" class="text-white 1">registrar</a></h5>
+          {% endif %}
+          
+        </div>
+      </div>
+    </nav>
+    <!--Menu-->
+    <nav
+    class="navbar navbar-expand-md navbar-dark sticky-top p-md-3 my-navbar-bg-color"
+    >
+    <!--Imagen Menu-->
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img
+        class="my-img-fit-contain my-brand-logo-size"
+        src="{% static 'app/img/iconos/LOGUITO.png' %}"
+        alt="Imagen de la marca"
+      />
+    </a>
+    <!--Clima API-->
+    <div class="container">
+      <div class="card">
+        <h1 class="name" id="name"></h1>
+        <p class="temp"></p>
+        <p class="desc"></p>
+      </div>
+    </div>
+    <script src="{% static 'app/js/climapi.js' %}"></script>
+    <!--Boton Movil-->
+
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#myNavbar"
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--Links-->
+    <div class="container">
+      <div
+        class="collapse navbar-collapse flex-grow-1 text-right"
+        id="myNavbar"
+      >
+        <ul class="navbar-nav ml-auto flex-nowrap my-text-font-24">
+          <li class="nav-item active">
+            <a class="nav-link my-nav-text-padding" href="{% url 'index' %}"
+              >Inicio</a
+            >
+          </li>
+          <li class="nav-item dropdown my-nav-text-padding">
+            <a
+              class="nav-link active dropdown-toggle"
+              data-toggle="dropdown"
+              data-target="drop-tienda"
+              href="{% url 'stockproduct' %}"
+              >Menu <span class="caret"></span
+            ></a>
+            <div class="dropdown-menu my-navbar-drop-bg-color" aria-labelledby="drop-tienda">
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropahombre' %}"
+                >Ropa para Hombre</a
+              >
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropamujer' %}"
+                >Ropa para Mujer</a
+              >
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanino' %}"
+                >Ropa para Niño</a
+              >
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanina' %}"
+                >Ropa para Niña</a
+              >
+            </div>
+          </li>
+          
+          <li class="nav-item active my-nav-text-padding">
+            <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+          </li>
+          <li class="nav-item active my-nav-text-padding">
+            <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!--Contenido-->
+
+    {% block contenido %}
+
+    {% endblock contenido %}
+
+    <!--Footer-->
+
+    
+    
+    <footer class="bg-dark text-center my-screen-size">
+      <div class="container p-4 my-footer-padding">
+        <!--Div Fila contenido-->
+        <div class="row py-4 d-flex align-items-center">
+          <!--Logo y Mensaje-->
+          <div class="col-md text-center text-white">
+            <img 
+              class="my-img-fit-contain my-brand-logo-size"
+              src="{% static 'app/img/LOGUITO.png' %}" 
+              alt="Logo de la página" 
+            >
+            <p class="my-text-justify">
+              La empresa de seguridad “SAFE” es una organización conformada el año 2000, se dedica a prestar servicios
+de asesoría en prevención de riesgos y salud ocupacional a empresas del sector minero.
+            </p>
+          </div>
+          <!--Menu secundario-->-
+          <div class="col-md mx-auto text-center">
+            <h6 class="text-white text-uppercase font-weight-bold my-pb-60 my-text-font-24">
+              Menú
+            </h6>
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              <li class="nav-item active">
+                <a href="{% url 'index' %}" class="text-white my-text-font-18">Inicio</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                class="nav-link active dropdown-toggle text-white my-text-font-18"
+                data-toggle="dropdown"
+                data-target="drop-tienda"
+                href="#"
+                >Menu <span class="caret"></span
+                ></a>
+                <div class="dropdown-menu my-navbar-drop-bg-color" aria-labelledby="drop-tienda">
+                  <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropahombre' %}"
+                    >Ropa para Hombre</a
+                  >
+                  <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropamujer' %}"
+                    >Ropa para Mujer</a
+                  >
+                  <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanino' %}"
+                    >Ropa para Niño</a
+                  >
+                  <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanina' %}"
+                    >Ropa para Niña</a
+                  >
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'nosotros' %}" class="text-white my-text-font-18">Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'contacto' %}" class="text-white my-text-font-18">Contacto</a>
+              </li>
+            </ul>
+          </div>
+          <!--Social-->
+          <div class="col-md mx-auto text-center">
+            <h6 class="text-white text-uppercase font-weight-bold my-pb-10 my-text-font-24">Contacto</h6>
+            <b id="gmap">  Google Maps. </b>
+            <div id="map">
+            <script src="{% static 'app/js/maps.js' %}"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+            </div>
+            <p class="text-white my-pb-15 my-pt-15"><b>Dirección:</b><br>
+              11 Norte 1291, Villa Exótica, Edificio Institucional<br>
+              <b>Número de contacto:</b><br>
+              (56) 55 232 2100
+            </p>
+            <a href="https://www.facebook.com" target="_blank"><i class="mr-4"><img src="{% static 'app/img/facebook.png ' %}" alt="icono facebook" class="my-footer-social-icon-size"></i></a>
+            <a href="https://www.instagram.com/explore/tags/chuquicamata/" target="_blank"><i class="mr-4"><img src="{% static 'app/img/instagram.png ' %}" alt="icono instagram" class="my-footer-social-icon-size"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i ><img src="{% static 'app/img/twitter.png' %}" alt="icono twitter" class="my-footer-social-icon-size"></i></a>
+          </div>
+        </div>
+      </div>
+        <!--Div fila derechos-->
+        <div 
+          class="text-center mx-auto p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <h6 class="text-white text-uppercase">Copyright © 2021 S A F E</h6>
+        </div>
+      <!--Footer End-->
+
+
+    </footer>
+    <!--No se pone nada abajo de esto-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+      {% for m in messages %}
+
+        <script>
+          Swal.fire(
+            "title" : "Buen Trabajo!",
+            "text": "{{m}}",
+            "icon": "success"
+          )
+        </script>
+
+      {% endfor %}
+    {% endif %}
+    <!--JQuery-->
+    <script src="{% static 'app/js/jquery-3.5.1.slim.min.js' %}"></script>
+    <!--Popper-->
+    <script src="{% static 'app/js/popper.min.js' %}"></script>
+    <!--Bootstrap-->
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <!--No se pone nada abajo de esto-->
+  </body>
+</html>
