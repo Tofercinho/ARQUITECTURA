@@ -6,7 +6,7 @@ var clouds = document.querySelector('.clouds');
 
 
 
-fetch('https://api.openweathermap.org/data/2.5/weather?q=Santiago,cl&appid=92193a0bddde1d5ebcc9787c63185f53&lang=sp')
+fetch('https://api.openweathermap.org/data/2.5/weather?q=Calama,cl&appid=92193a0bddde1d5ebcc9787c63185f53&lang=sp')
 .then(response => response.json())
 .then(data => {
   var tempValue = ((data['main']['temp'])-268.2).toFixed(1);
