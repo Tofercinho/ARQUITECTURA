@@ -28,7 +28,7 @@
             <a href="{% url 'menus' %}" class="text-white 1">MENU ADMINISTRADOR</a></h5>
           {% else %}
             <h5  class="text-white">Mi Cuenta: <a href="{% url 'login' %}" class="text-white 1">Entrar /</a>
-            <a href="{% url 'register' %}" class="text-white 1">registrar</a></h5>
+            <a href="{% url 'register' %}" class="text-white 1">Registrar</a></h5>
           {% endif %}
           
         </div>
@@ -85,26 +85,24 @@
               >Menu <span class="caret"></span
             ></a>
             <div class="dropdown-menu my-navbar-drop-bg-color" aria-labelledby="drop-tienda">
-              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropahombre' %}"
-                >Ropa para Hombre</a
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'stockproduct' %}"
+                >ASISTENTES</a
               >
-              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropamujer' %}"
-                >Ropa para Mujer</a
-              >
-              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanino' %}"
-                >Ropa para Niño</a
-              >
-              <a class="dropdown-item text-black font-weight-bold" href="{% url 'ropanina' %}"
-                >Ropa para Niña</a
-              >
+              <a class="dropdown-item text-black font-weight-bold" href="{% url 'contactcrud' %}"
+                >REGISTRO VISITA MEDICA</a
+              
             </div>
           </li>
           
           <li class="nav-item active my-nav-text-padding">
-            <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+            <a class="nav-link" href="{% url 'nosotros' %}">Colaboradores</a>
           </li>
           <li class="nav-item active my-nav-text-padding">
             <a class="nav-link" href="{% url 'contacto' %}">Visitas Medicas</a>
+          </li>
+
+          <li class="nav-item active my-nav-text-padding">
+            <a class="nav-link" href="{% url 'addproducto' %}">Capacitacion</a>
           </li>
         </ul>
       </div>

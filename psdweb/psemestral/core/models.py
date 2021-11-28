@@ -27,32 +27,29 @@ class usercontact(models.Model):
 #productos
 
 typeProduct = [
-    [0, 'poleras'],
-    [1, 'pantalones'],
-    [2, 'camisas'],
-    [3, 'polerones'],
-    [4, 'vestidos'],
-    [5, 'zapatillas']
+    [0, 'Seguridad'],
+    [1, 'Covid'],
+    [2, 'Auto cuidado'],
+    [3, 'Manejo de emociones'],
+    [4, 'Psicologia de emergencia'],
+    [5, 'Prevención y Manejo de Conflictos']
 ]
 genders = [
     [0, 'Masculino'],
     [1, 'Femenino'],
+    [2, 'No definido']
 ]
 brands = [
-    [0, 'nike'],
-    [1, 'adidas'],
-    [2, 'rebook'],
-    [3, 'levis'],
-    [4, 'lacoste'],
-    [5, 'supreme'],
-    [6, 'gucci']
+    [0, 'SI'],
+    [1, 'NO']
+    
 ]
 
 class newProduct(models.Model):  
 
     gender = models.IntegerField(choices = genders)
     name = models.CharField( max_length=50)
-    size = models.CharField( max_length=5)
+    size = models.CharField( max_length=256)
     type = models.IntegerField(choices = typeProduct)
     brand = models.IntegerField(choices = brands)
     price = models.IntegerField()

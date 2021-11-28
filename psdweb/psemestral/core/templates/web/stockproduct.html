@@ -12,19 +12,23 @@
     <section class="our-webcoderskull padding-lg">
     <div class="container">
         <div class="row heading heading-icon">
-            <h2>Tienda</h2>
+            <h2>ASISTENTES</h2>
         </div>
         <ul class="row">
         {% for p in entity %}
         <li class="col-12 col-md-6 col-lg-3">
             
-            <div class="cnt-block equal-hight" style="height: 400px;">
-                <p>{{p.type}}</p>
+            <div class="cnt-block equal-hight" style="height: 500px;">
+                
                 <figure><img src="{{p.img.url}}" alt=""></figure>
-                <h3>{{p.name}} - {{p.brand}}</h3>
-                <h2>${{p.price | intcomma}}</h2>
-                <p>{{p.gender}}</p>
-                <p>talla: {{p.size}}</p>
+                <h3>NOMBRE DEL ASISTENTE: {{p.size}}</p>
+                
+                <h3>EMPRESA: {{p.name}}</h3>
+                <h4>Numero de telefono: {{p.price}}</h4>
+            
+            
+                
+                
             </div>
         </li>
         {% endfor %}
