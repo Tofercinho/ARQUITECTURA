@@ -3,17 +3,25 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect
 from .models import user, usercontact, newProduct
 from .forms import contactForm, registroUser, addProduct, CustomUserCreationForm
+from .util import render_pdf
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.views.generic import ListView
+
+
+class ListacertificadoListView(ListView):
+    model=addProduct
+    template_name="web/certificado.html"
+    contexto="form"
+
 
 # Create your views here.
 
 def index(request):
     return render(request, 'web/index.html')
-
 
 # funciones para el contacto
 def contacto(request): #agregar
@@ -172,6 +180,22 @@ def deleteproduct(request, idproduct): #eliminar usuario desde un adminw
         messages.error(request, mensaje)
         
     return redirect('productcrud') 
+
+def certificado(request, idproduct): #editar producto desde un administrador
+    eproduct = newProduct.objects.get(id=idproduct)
+    data = {
+    'form': addProduct(instance=eproduct) 
+    }
+    if request.method == 'POST':
+        formulario_edit = addProduct(data=request.POST, instance=eproduct, files = request.FILES)
+        if formulario_edit.is_valid:
+            formulario_edit.save()
+            data['mensaje'] = "producto editado correctamente"
+            return redirect('productcrud')
+        else:
+            data["form"] = formulario_edit(instance=eproduct.object.get(id=idproduct));  
+    pdf=render_pdf('web/certificado.html', data)
+    return HttpResponse(pdf, content_type="application/pdf")
 
 def ropahombre(request):
     products = newProduct.objects.all()

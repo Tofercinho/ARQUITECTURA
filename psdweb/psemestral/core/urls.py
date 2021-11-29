@@ -18,6 +18,7 @@ urlpatterns = [
     path("deleteproduct/<idproduct>/", views.deleteproduct, name="deleteproduct"), #eliminar
     path("editproduct/<idproduct>", views.editproduct, name="editproduct"), ##editar
     path("stockproduct/", views.stockproduct, name="stockproduct"), #stock de productos
+    path("certificado/<idproduct>", views.certificado, name="certificado"),
 
     path("ropahombre/", views.ropahombre, name="ropahombre"),
     path("ropamujer/", views.ropamujer , name="ropamujer"),
