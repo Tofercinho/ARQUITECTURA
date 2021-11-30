@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+    .img-invoice {
+        width: 100px;
+        text-align:left;
+        margin: 0 auto;
+    }
+    .img-firma {
+        width: 300px;
+        text-align:center;
+        
+        
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    #invoice thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="img-invoice">
+        <img src="{{ icon }}" >
+    
+    </div>
+
+
+    <h1 class="head">CERTIFICADO</h1>
+    <p class="head"> <br>
+     
+</p>
+<h2 class="text-center"> Se certifica que {{ form.size }} con Rol único Nacional (RUN) {{ form.price }} - ha aprobado el curso <br>
+    que SAFE puso a disposición para la empresa "{{ form.name }}" para asegurar su buen funcionamiento <br>
+    y seguridad de todos sus empleados. Esperamos que {{ form.size }} cumpla con <br>
+    sus labores y aplique los conocimientos entregados<br>
+      </h2>
+<p class="text-center">
+     <br>
+     <br>
+    <br>
+</p>
+
+
+<div style="margin-top: 150px;" class="text-center"> 
+    <img src="{{ icono }}" class="img-firma"><br>
+    <b>________________________________</b><br>
+    <b>Charles Francis Xavier, Director Ejecutivo SAFE </b>
+</div>
+
+</body>
+</html>

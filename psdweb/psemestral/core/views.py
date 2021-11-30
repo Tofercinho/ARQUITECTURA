@@ -9,13 +9,64 @@ from django.core.paginator import Paginator
 from django.http import Http404, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.views.generic import ListView
+from django.views.generic import ListView, View
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+
 
 
 class ListacertificadoListView(ListView):
     model=addProduct
     template_name="web/certificado.html"
     contexto="form"
+
+class certificadopdfView(View):
+    def link_callback(self, uri, rel):
+        """
+        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+        resources
+        """
+        # use short variable names
+        sUrl = settings.STATIC_URL  # Typically /static/
+        sRoot = settings.STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = settings.MEDIA_URL  # Typically /static/media/
+        mRoot = settings.MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+    def get(self, request, *args, **kwargs):
+        try:
+            template = get_template('web/certificadopdf.html')
+            context= {
+                'form': newProduct.objects.get(id=self.kwargs['idproduct']),
+                'icon': '{}{}'.format(settings.STATIC_URL, 'app/img/Iconos/LOGUITO.png'),
+                'icono': '{}{}'.format(settings.STATIC_URL, 'app/img/pngw.png')
+            }
+            html= template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            pisaStatus=pisa.CreatePDF(
+                html, dest=response, link_callback=self.link_callback)
+            return response
+        except:
+            pass
+        return HttpResponse('Hehe fallo')
 
 
 # Create your views here.
@@ -181,21 +232,6 @@ def deleteproduct(request, idproduct): #eliminar usuario desde un adminw
         
     return redirect('productcrud') 
 
-def certificado(request, idproduct): #editar producto desde un administrador
-    eproduct = newProduct.objects.get(id=idproduct)
-    data = {
-    'form': addProduct(instance=eproduct) 
-    }
-    if request.method == 'POST':
-        formulario_edit = addProduct(data=request.POST, instance=eproduct, files = request.FILES)
-        if formulario_edit.is_valid:
-            formulario_edit.save()
-            data['mensaje'] = "producto editado correctamente"
-            return redirect('productcrud')
-        else:
-            data["form"] = formulario_edit(instance=eproduct.object.get(id=idproduct));  
-    pdf=render_pdf('web/certificado.html', data)
-    return HttpResponse(pdf, content_type="application/pdf")
 
 def ropahombre(request):
     products = newProduct.objects.all()
