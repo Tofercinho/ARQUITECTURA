@@ -40,6 +40,58 @@ def addinforme(request): #agregar
     return render(request, 'web/creacionInformeTerreno.html', data)
 
 
+class informeFinalpdfView(View):
+
+    def link_callback(self, uri, rel):
+        """
+        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+        resources
+        """
+        # use short variable names
+        sUrl = settings.STATIC_URL  # Typically /static/
+        sRoot = settings.STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = settings.MEDIA_URL  # Typically /static/media/
+        mRoot = settings.MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+    def get(self, request, *args, **kwargs):
+        try:
+            template = get_template('web/informeFinal.html')
+            asis= newProduct.objects.all()
+            visi= usercontact.objects.all()
+            context= {
+                'asistentes': newProduct.objects.all(),
+                'visitas': usercontact.objects.all(),
+                'numasistentes': asis.count(),
+                'numvisitas': visi.count(),
+
+                'icon': '{}{}'.format(settings.STATIC_URL, 'app/img/Iconos/LOGUITO.png'),
+                'icono': '{}{}'.format(settings.STATIC_URL, 'app/img/pngw.png')
+            }
+            html= template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            pisaStatus=pisa.CreatePDF(
+                html, dest=response, link_callback=self.link_callback)
+            return response
+        except:
+            pass
+        return HttpResponse('Hehe Algo fallo')
+
+
 class ListacertificadoListView(ListView):
     model=addProduct
     template_name="web/certificado.html"

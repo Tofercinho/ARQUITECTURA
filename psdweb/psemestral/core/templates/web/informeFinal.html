@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+    .img-invoice {
+        width: 100px;
+        text-align:center;
+        margin: 0 auto;
+    }
+    .img-firma {
+        width: 300px;
+        text-align:center;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="img-invoice">
+        <img src="{{ icon }}" >
+    </div>
+
+
+    <h1 class="head">Informe Final <br>
+        </h1>
+        <p class="text-center">Asistentes: {{ numasistentes }} <br>
+            Consultas Medicas: {{ numvisitas }}</p>
+    
+    <table id="invoice">
+        <thead>
+            <tr style="border-top: 1px solid black; padding-top: 4px;">
+                <th>ASISTENTES </th>
+                <th>EMPRESA </th>
+                <th>RUT </th>    
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistente in asistentes %}
+                <tr><br>
+                    <td class="text-center">{{asistente.size}}</td>
+                    <td class="text-center">{{asistente.name}}</td>
+                    <td class="text-center">{{asistente.price}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <tr style="border-top: 1px solid black; padding-top: 4px;">
+            <br>
+                
+                <th>NOMBRE PACIENTE </th>
+                <th>MAIL </th>
+                <th>ASUNTO </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for visita in visitas %}
+                <tr><br>
+                    <td class="text-center">{{visita.name}}</td>
+                    <td class="text-center">{{visita.email}}</td>
+                    <td class="text-center">{{visita.msn}}</td>
+                </tr>
+            {% endfor %}
+    </tbody>
+
+</body>
+</html>

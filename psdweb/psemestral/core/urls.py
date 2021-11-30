@@ -11,6 +11,7 @@ urlpatterns = [
     # fin contacto mensaje
 
     path("informeterreno/", views.addinforme, name="informeterreno"),
+    path("informefinal/", views.informeFinalpdfView.as_view(), name= "informefinal"),
     
     path("modelo/", views.modelo, name="modelo"),
     path("nosotros/", views.nosotros , name="nosotros"),
