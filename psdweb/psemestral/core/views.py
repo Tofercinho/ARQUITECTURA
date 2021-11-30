@@ -1,8 +1,8 @@
 from django.http.request import HttpRequest
 from django.http.response import Http404
 from django.shortcuts import render, redirect
-from .models import user, usercontact, newProduct
-from .forms import contactForm, registroUser, addProduct, CustomUserCreationForm
+from .models import user, usercontact, newProduct, informe
+from .forms import contactForm, registroUser, addProduct, CustomUserCreationForm, registroInforme
 from .util import render_pdf
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -17,6 +17,27 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
+def addinforme(request): #agregar
+
+    msnform = registroInforme()
+    data = {'cform' : msnform}
+    
+    if request.method == 'POST':
+        msnform = contactForm(data = request.POST) 
+        if msnform.is_valid():
+            msnform.save()
+        else:
+            data["cform"] = msnform;
+        
+        print("Mensaje enviado Correctamente")
+        mensaje = "Mensaje enviado Correctamente"
+        messages.success(request, mensaje)
+    else:
+        print("No se puedo enviar el mensaje, revisa los datos")
+        #mensaje = "No se puedo enviar el mensaje, revisa los datos"
+        #messages.error(request, mensaje)
+
+    return render(request, 'web/creacionInformeTerreno.html', data)
 
 
 class ListacertificadoListView(ListView):
@@ -66,7 +87,7 @@ class certificadopdfView(View):
             return response
         except:
             pass
-        return HttpResponse('Hehe fallo')
+        return HttpResponse('Hehe Algo fallo')
 
 
 # Create your views here.
@@ -96,6 +117,7 @@ def contacto(request): #agregar
         #messages.error(request, mensaje)
 
     return render(request, 'web/contacto.html', data)
+
 
 def contactcrud(request): #listar
     contacts = usercontact.objects.all()
@@ -169,15 +191,15 @@ def addproducto(request): #AGREGAR PRODUCTO
         product = addProduct(request.POST, files = request.FILES) 
         if product.is_valid():
             product.save()
-            print("producto Creado Correctamente")
-            mensaje = "producto Creado Correctamente"
+            print("Asistente Creado Correctamente")
+            mensaje = "Asistente Creado Correctamente"
             messages.success(request, mensaje)
             return redirect('index')
         else:
             data["proForm"] = product;  
     else:
-        print("No se puedo crear el producto, revisa los datos")
-        mensaje = "No se puedo crear el producto, revisa los datos"
+        print("No se puedo crear el Asistente, revisa los datos")
+        mensaje = "No se puedo crear el Asistente, revisa los datos"
         messages.error(request, mensaje)
     return render(request, 'web/addproducto.html', data)
 
@@ -210,7 +232,7 @@ def editproduct(request, idproduct): #editar producto desde un administrador
         formulario_edit = addProduct(data=request.POST, instance=eproduct, files = request.FILES)
         if formulario_edit.is_valid:
             formulario_edit.save()
-            data['mensaje'] = "producto editado correctamente"
+            data['mensaje'] = "Asistente editado correctamente"
             return redirect('productcrud')
         else:
             data["form"] = formulario_edit(instance=eproduct.object.get(id=idproduct));  
@@ -221,8 +243,8 @@ def deleteproduct(request, idproduct): #eliminar usuario desde un adminw
 
     try:
         newProduct.delete(product)
-        print("Producto Eliminado Correctamente")
-        mensaje = "Producto Eliminado Correctamente"
+        print("Asistente Eliminado Correctamente")
+        mensaje = "Asistente Eliminado Correctamente"
         messages.success(request, mensaje)
         
     except:

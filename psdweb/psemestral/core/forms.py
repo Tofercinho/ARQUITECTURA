@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import fields
-from .models import user, usercontact, newProduct
+from .models import user, usercontact, newProduct, informe
 from django.contrib.auth.models import User
 
 class contactForm(forms.ModelForm):
@@ -16,6 +16,12 @@ class contactForm(forms.ModelForm):
             'msn': forms.TextInput(attrs={'placeholder': 'Mensaje'}),
             'obser': forms.TextInput(attrs={'placeholder': 'Observacion'}),
         }
+
+class registroInforme(forms.ModelForm):
+    class Meta : 
+        model = informe
+        fields = '__all__'
+        
 
 
 class registroUser(forms.ModelForm):

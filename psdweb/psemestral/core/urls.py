@@ -9,6 +9,8 @@ urlpatterns = [
     path("contactcrud/", views.contactcrud , name="contactcrud"), #listar
     path("lcontdel/<iduserc>/", views.lcontdel , name="lcontdel"), #eliminar
     # fin contacto mensaje
+
+    path("informeterreno/", views.addinforme, name="informeterreno"),
     
     path("modelo/", views.modelo, name="modelo"),
     path("nosotros/", views.nosotros , name="nosotros"),
@@ -18,7 +20,6 @@ urlpatterns = [
     path("deleteproduct/<idproduct>/", views.deleteproduct, name="deleteproduct"), #eliminar
     path("editproduct/<idproduct>", views.editproduct, name="editproduct"), ##editar
     path("stockproduct/", views.stockproduct, name="stockproduct"), #stock de productos
-    
     path('certificadopdf/<idproduct>', views.certificadopdfView.as_view(), name='certificadopdf'),
 
     path("ropahombre/", views.ropahombre, name="ropahombre"),

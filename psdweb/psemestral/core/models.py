@@ -57,4 +57,13 @@ class newProduct(models.Model):
 
     def __str__(self):
         return self.name
-        
+
+class informe(models.Model):
+
+    name: models.CharField(max_length=50)
+    rut: models.IntegerField()   
+    descripcion: models.TextField()
+    empresa: models.CharField(max_length=60)
+    def __str__(self):
+        return self.name
+
