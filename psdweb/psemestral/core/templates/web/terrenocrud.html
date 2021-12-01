@@ -10,8 +10,7 @@
       <br>
       {%  include 'web/status.html' %}
       <br>
-      <a href="{% url 'userscrud' %}" class="btn btn-success btn-xs pull-right">USUARIOS DE LA PAGINA<b></b> </a>
-      <a href="{% url 'productcrud' %}" class="btn btn-warning btn-xs pull-right">ASISTENTES<b></b> </a>
+      <a href="{% url 'informeterreno' %}" class="btn btn-warning btn-xs pull-right">CREAR<b></b> </a>
       <br>
           <table class="table table-striped custab">
             <thead>
@@ -40,9 +39,9 @@
               <td>{{ c.observacion1 | title}}</td>
               <td class="text-center">
               
-              <a href="{% url 'informeterrenopdf' p.id%}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+              <a href="{% url 'informeterrenopdf' c.id%}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> INFORME</a> 
           
-              <a href="{% url 'lcontdel' c.id%}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> BORRAR</a> </td>
+              <a href="{% url 'informeeli' c.id%}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> BORRAR</a> </td>
             </tr>
             {% endfor %}
             

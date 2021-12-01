@@ -25,6 +25,7 @@ urlpatterns = [
     path("stockproduct/", views.stockproduct, name="stockproduct"), #stock de productos
     path('certificadopdf/<idproduct>', views.certificadopdfView.as_view(), name='certificadopdf'),
     path('informeterrenopdf/<idinforme>', views.informeterrenopdfView.as_view(), name='informeterrenopdf'),
+    path('informeeli/<iduserc>', views.informeeli, name="informeeli"),
 
     path("ropahombre/", views.ropahombre, name="ropahombre"),
     path("ropamujer/", views.ropamujer , name="ropamujer"),

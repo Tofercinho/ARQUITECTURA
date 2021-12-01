@@ -17,6 +17,24 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
+
+def informeeli(request, iduserc): #eliminar
+    contacts = terrenocrud.objects.get(id=iduserc)
+
+    try:
+        terrenocrud.delete(contacts)
+        print("Eliminado Correctamente")
+        mensaje = "Eliminado Correctamente"
+        messages.success(request, mensaje)
+        
+    except:
+        print("No se puedo eliminar, revisa los datos")
+        mensaje = "No se puedo eliminar, revisa los datos"
+        messages.error(request, mensaje)
+        
+    return redirect('terrenocrud')
+
+
 def addinforme(request): #agregar
     
     trrform = terrenocrudForm()
