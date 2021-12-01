@@ -12,7 +12,7 @@ urlpatterns = [
 
     path("informeterreno/", views.addinforme, name="informeterreno"),
     path("informefinal/", views.informeFinalpdfView.as_view(), name= "informefinal"),
-    path("terrenocrud/", views.terrenocrud, name="terrenocrud"),
+    path("terrenocrud/", views.listarterreno, name="terrenocrud"),
 
     
     path("modelo/", views.modelo, name="modelo"),
@@ -24,6 +24,7 @@ urlpatterns = [
     path("editproduct/<idproduct>", views.editproduct, name="editproduct"), ##editar
     path("stockproduct/", views.stockproduct, name="stockproduct"), #stock de productos
     path('certificadopdf/<idproduct>', views.certificadopdfView.as_view(), name='certificadopdf'),
+    path('informeterrenopdf/<idinforme>', views.informeterrenopdfView.as_view(), name='informeterrenopdf'),
 
     path("ropahombre/", views.ropahombre, name="ropahombre"),
     path("ropamujer/", views.ropamujer , name="ropamujer"),

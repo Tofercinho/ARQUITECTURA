@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+    .img-invoice {
+        width: 120px;
+        text-align:left;
+        margin: 0 auto;
+    }
+    .img-firma {
+        width: 300px;
+        text-align:center;
+        
+        
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    #invoice thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="img-invoice">
+        <img src="{{ icon }}" >
+    
+    </div>
+
+
+    <h1 class="head" style="border-bottom: 5px solid black; padding-top: 10px;">INFORME TERRENO</h1>
+    
+    <b>Personal a Cargo: {{ form.personal }} <br>
+            Nombre de la Empresa: {{ form.nomempresa }} <br> 
+            Asunto de Visita: {{ form.asunto }}</b>
+     
+</p>
+<h2 class="text-center" style="border-top: 5px solid black; padding-top: 10px;">
+        asi es {{ form.anteceden }}. <br>
+    {{ form.observacion1 }}. <br>
+    {{ form.observacion }}.
+    
+      </h2>
+<p class="text-center">
+     <br>
+     <br>
+    <br>
+</p>
+
+
+<div style="margin-top: 150px;" class="text-center"> 
+   <h1>Informe realizado por {{ form.nomtec }}  </h1>
+</div>
+
+</body>
+</html>

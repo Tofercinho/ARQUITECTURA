@@ -1,0 +1,66 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block contenido %}
+  
+    <!-- TABLAS PARA EL CRUD -->
+    <br>
+    
+    <br>
+    <div class="container">
+      <br>
+      {%  include 'web/status.html' %}
+      <br>
+      <a href="{% url 'userscrud' %}" class="btn btn-success btn-xs pull-right">USUARIOS DE LA PAGINA<b></b> </a>
+      <a href="{% url 'productcrud' %}" class="btn btn-warning btn-xs pull-right">ASISTENTES<b></b> </a>
+      <br>
+          <table class="table table-striped custab">
+            <thead>
+                <tr>
+                <br>
+                    <th>ID</th>
+                    <th>Personal en terreno </th>
+                    <th>Nombre del tecnico </th>
+                    <th>Asunto del informe </th>
+                    <th>Nombre de la empresa </th>
+                    <th>Antecedentes </th>
+                    <th>OBSERVACION </th>
+                    <th>OBSERVACION2 </th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            {% for c in entity %}
+            <tr>
+              <td>{{ c.id | title}}</td>
+              <td>{{ c.personal | title}}</td>
+              <td>{{ c.nomtec | title}}</td>
+              <td>{{ c.asunto | title}}</td>
+              <td>{{ c.nomempresa | title}}</td>
+              <td>{{ c.anteceden | title}}</td>
+              <td>{{ c.observacion| title}}</td>
+              <td>{{ c.observacion1 | title}}</td>
+              <td class="text-center">
+              
+              <a href="{% url 'informeterrenopdf' p.id%}" class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+          
+              <a href="{% url 'lcontdel' c.id%}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> BORRAR</a> </td>
+            </tr>
+            {% endfor %}
+            
+          </table>
+        <br>
+        <div
+          {% if messages %}
+            {% for m in messages %}
+
+              <div> {{m}} </div>
+
+            {% endfor %}
+          {% endif %}
+        </div>
+    </div>
+    <br>
+    <div>
+      {% include 'web/pagination.html'  %}
+    </div>
+    <br>
+{% endblock contenido %}

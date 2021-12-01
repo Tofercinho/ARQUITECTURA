@@ -39,7 +39,8 @@
     <h1 class="head">Informe Final <br>
         </h1>
         <p class="text-center">Asistentes: {{ numasistentes }} <br>
-            Consultas Medicas: {{ numvisitas }}</p>
+            Consultas Medicas: {{ numvisitas }} <br>
+            Informes Terreno: {{ numinformes }}</p>
     
     <table id="invoice">
         <thead>
@@ -77,6 +78,30 @@
                 </tr>
             {% endfor %}
     </tbody>
+    <thead>
+        <tr style="border-top: 1px solid black; padding-top: 4px;">
+        <br>
+            
+            <th>NOMBRE TECNICO </th>
+            <th>EMPRESA </th>
+            <th>RAZON </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for informe in informes %}
+            <tr><br>
+                <td class="text-center">{{informe.nomtec}}</td>
+                <td class="text-center">{{informe.nomempresa}}</td>
+                <td class="text-center">{{informe.asunto}}</td>
+            </tr>
+        {% endfor %}
+</tbody>
+<div style="margin-bottom: 150px;" class="text-center"> 
+    <img src="{{ icono }}" class="img-firma"><br>
+    <b>________________________________</b><br>
+    <b>Charles Francis Xavier, Director Ejecutivo SAFE </b>
+</div>
 
 </body>
 </html>

@@ -18,16 +18,16 @@ from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 
 def addinforme(request): #agregar
-
-    msnform = terrenocrudForm()
-    data = {'cform' : msnform}
+    
+    trrform = terrenocrudForm()
+    data = {'iform' : trrform}
     
     if request.method == 'POST':
-        msnform = contactForm(data = request.POST) 
-        if msnform.is_valid():
-            msnform.save()
+        trrform = contactForm(data = request.POST) 
+        if trrform.is_valid():
+            trrform.save()
         else:
-            data["cform"] = msnform
+            data["iform"] = trrform;
         
         print("Mensaje enviado Correctamente")
         mensaje = "Mensaje enviado Correctamente"
@@ -38,6 +38,29 @@ def addinforme(request): #agregar
         #messages.error(request, mensaje)
 
     return render(request, 'web/creacionInformeTerreno.html', data)
+
+    
+
+
+def listarterreno(request): #listar
+    contacts = terrenocrud.objects.all()
+    users = user.objects.all()
+    products = terrenocrud.objects.all()
+    numproducts = products.count()
+    numusers = users.count()
+    numcontacts = contacts.count()
+    page = request.GET.get('page', 1)
+    
+    try:
+        paginator = Paginator(products, 10)
+        products = paginator.page(page)
+    except:
+        raise Http404
+    data = {
+        'entity' : contacts, 'nusers' : numusers, 'ncontacts' : numcontacts, 'nproducts' : numproducts,
+        'paginator' : paginator
+    }
+    return render(request, 'web/terrenocrud.html', data)
 
 
 class informeFinalpdfView(View):
@@ -73,11 +96,14 @@ class informeFinalpdfView(View):
             template = get_template('web/informeFinal.html')
             asis= newProduct.objects.all()
             visi= usercontact.objects.all()
+            inf= terrenocrud.objects.all()
             context= {
                 'asistentes': newProduct.objects.all(),
                 'visitas': usercontact.objects.all(),
+                'informes': terrenocrud.objects.all(),
                 'numasistentes': asis.count(),
                 'numvisitas': visi.count(),
+                'numinformes': inf.count(),
 
                 'icon': '{}{}'.format(settings.STATIC_URL, 'app/img/Iconos/LOGUITO.png'),
                 'icono': '{}{}'.format(settings.STATIC_URL, 'app/img/pngw.png')
@@ -129,6 +155,50 @@ class certificadopdfView(View):
             template = get_template('web/certificadopdf.html')
             context= {
                 'form': newProduct.objects.get(id=self.kwargs['idproduct']),
+                'icon': '{}{}'.format(settings.STATIC_URL, 'app/img/Iconos/LOGUITO.png'),
+                'icono': '{}{}'.format(settings.STATIC_URL, 'app/img/pngw.png')
+            }
+            html= template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            pisaStatus=pisa.CreatePDF(
+                html, dest=response, link_callback=self.link_callback)
+            return response
+        except:
+            pass
+        return HttpResponse('Hehe Algo fallo')
+
+class informeterrenopdfView(View):
+    def link_callback(self, uri, rel):
+        """
+        Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+        resources
+        """
+        # use short variable names
+        sUrl = settings.STATIC_URL  # Typically /static/
+        sRoot = settings.STATIC_ROOT  # Typically /home/userX/project_static/
+        mUrl = settings.MEDIA_URL  # Typically /static/media/
+        mRoot = settings.MEDIA_ROOT  # Typically /home/userX/project_static/media/
+
+        # convert URIs to absolute system paths
+        if uri.startswith(mUrl):
+            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+        elif uri.startswith(sUrl):
+            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+        else:
+            return uri  # handle absolute uri (ie: http://some.tld/foo.png)
+
+        # make sure that file exists
+        if not os.path.isfile(path):
+            raise Exception(
+                'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+        return path
+
+    def get(self, request, *args, **kwargs):
+        try:
+            template = get_template('web/informeterrenopdf.html')
+            context= {
+                'form': terrenocrud.objects.get(id=self.kwargs['idinforme']),
                 'icon': '{}{}'.format(settings.STATIC_URL, 'app/img/Iconos/LOGUITO.png'),
                 'icono': '{}{}'.format(settings.STATIC_URL, 'app/img/pngw.png')
             }

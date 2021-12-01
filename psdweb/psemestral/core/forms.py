@@ -20,7 +20,7 @@ class contactForm(forms.ModelForm):
 class terrenocrudForm(forms.ModelForm):
     
     class Meta : 
-        model = informe
+        model = terrenocrud
         #fields = ["personal", "nomtec", "asunto", "nomempresa", "anteceden", 
         # "observacion", "observacion1"]
         fields = '__all__'
