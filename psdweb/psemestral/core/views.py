@@ -1,8 +1,8 @@
 from django.http.request import HttpRequest
 from django.http.response import Http404
 from django.shortcuts import render, redirect
-from .models import user, usercontact, newProduct, informe
-from .forms import contactForm, registroUser, addProduct, CustomUserCreationForm, registroInforme
+from .models import user, usercontact, newProduct, informe, terrenocrud
+from .forms import contactForm, registroUser, addProduct, CustomUserCreationForm, registroInforme, terrenocrudForm
 from .util import render_pdf
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -19,7 +19,7 @@ from django.contrib.staticfiles import finders
 
 def addinforme(request): #agregar
 
-    msnform = registroInforme()
+    msnform = terrenocrudForm()
     data = {'cform' : msnform}
     
     if request.method == 'POST':
@@ -27,7 +27,7 @@ def addinforme(request): #agregar
         if msnform.is_valid():
             msnform.save()
         else:
-            data["cform"] = msnform;
+            data["cform"] = msnform
         
         print("Mensaje enviado Correctamente")
         mensaje = "Mensaje enviado Correctamente"

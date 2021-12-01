@@ -23,6 +23,20 @@ class usercontact(models.Model):
     def __str__(self):
         return self.name
 
+class terrenocrud(models.Model):
+    
+    personal = models.CharField( max_length=50)
+    nomtec = models.CharField( max_length=50)
+    asunto = models.CharField( max_length=300)
+    nomempresa = models.CharField( max_length=300)
+    anteceden = models.CharField( max_length=300)
+    observacion = models.CharField( max_length=500)
+    observacion1 = models.CharField( max_length=500)
+
+    def __str__(self):
+        return self.personal
+
+
 
 #productos
 

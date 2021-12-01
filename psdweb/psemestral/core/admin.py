@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import newProduct, user, usercontact, informe
+from .models import newProduct, user, usercontact, informe, terrenocrud
 # Register your models here.
 
 
@@ -16,7 +16,12 @@ class adminproducts(admin.ModelAdmin):
     list_display = ["name", "type", "gender", "size", "brand", "price", "img"]
     search_fields = ["brand"]
 
+class adterrenocrud(admin.ModelAdmin):
+    list_display = ["personal", "nomtec", "asunto", "nomempresa", "anteceden", "observacion", "observacion1"]
+    search_fields = ["personal"]
+
 
 admin.site.register(user, useredit)
 admin.site.register(usercontact, userscontact)
 admin.site.register(newProduct, adminproducts)
+admin.site.register(terrenocrud,adterrenocrud)
